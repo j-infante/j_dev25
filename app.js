@@ -13,6 +13,29 @@ var users = require('./routes/users');
 
 var app = express();
 
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  user: 'admin',
+  password: 'password',
+  database: 'mysigrid',
+  insecureAuth: true
+});
+
+con.connect(function (err){
+  if(err){throw err}
+  else{
+    console.log("connected");
+  }
+})
+
+con.query('SELECT * FROM task_communication',(err,rows)=>{
+  if(err)throw err;
+  console.log('data', rows);
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -50,7 +73,7 @@ app.use(function(err, req, res, next) {
 // set up server
 //-------------
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '4205');
 app.set('port', port);
 
 var server = http.createServer(app);

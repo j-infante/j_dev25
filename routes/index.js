@@ -6,9 +6,9 @@ const bot = new TelegramBot(token, {polling: true});
 
 bot.on('message', (msg) => {
   console.log('msg: ', msg);
-     if(msg.text){
+     if(msg.text.toString().toLowerCase() =='hi'){
         bot.sendMessage(msg.chat.id, 
-          "Fuck off user")
+          "Hello, thanks for using jdev25 bot.")
      }
 });
 /* GET home page. */
