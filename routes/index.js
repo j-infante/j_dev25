@@ -6,6 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Jdev_25 BOT API' });
 });
 
-router.get('/')
+router.get('/next',function(req,res,next){
+  res.render('index',{ title: "next route"})
+})
 
 module.exports = router;
